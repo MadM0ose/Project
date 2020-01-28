@@ -21,19 +21,27 @@ body{
     
    }
    
-   input[type="text"],input[type="password"]{
+   input[type="text"], input[type="password"], input[type="file"]{
     width: 300px;
     height:50px;
     font-size: 18px;
     margin: 10px 10px 10px 10px ;
     padding-left: 20px;
    }
+   .hide, .upload-img{
+       position: absolute;
+       overflow: hidden;
+       z-index: -1;
+       width: 0.1px;
+       height: 0.1px;
+       opacity: 0;
+   }
    .dws-input input:hover{
     box-shadow: 0 0 6px 3px rgba(58, 219, 253, 0.35);
    }
-   .dws-submit {
+   .dws-submit{
     padding: 13px 30px;
-    margin: 5px 0 20px 0;
+    margin: 5px 35px 20px 35px;
     font-size: 15px;
     color: #fff;
     background-color: #2ca8c6;
@@ -46,6 +54,7 @@ body{
     background: #fff;
     color: #2c536c;
    }
+   
    
    
    

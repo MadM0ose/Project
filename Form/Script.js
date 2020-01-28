@@ -5,6 +5,10 @@ const pass1 = document.getElementById('pass1')
 const pass2 = document.getElementById('pass2')
 pass2.disabled = true
 
+const avatar = document.getElementById('avatar')
+
+const img = document.getElementById('img')
+
 const submit = document.getElementById('submit')
 
 
@@ -37,6 +41,17 @@ pass2.onchange = function (event) {
   }  
 }
 
+avatar.onchange = function (event) {
+  let data
+  const reader = new FileReader 
+  reader.onload = function (event) {
+    data = event.target.result
+    img.src = data
+  }
+  reader.readAsDataURL(event.target.files[0])
+}
+
+
 submit.onclick = function (event) {
     fetch (`https://garevna-rest-api.glitch.me/user/${login.value}`,{
     method: 'POST',
@@ -44,7 +59,8 @@ submit.onclick = function (event) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        passhash: hash
+        passhash: hash,
+        avatar: img.src
     })
   }).then(response => console.log(response.status))
       .then(response => {
