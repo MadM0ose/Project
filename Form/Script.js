@@ -53,19 +53,20 @@ avatar.onchange = function (event) {
 
 
 submit.onclick = function (event) {
-    fetch (`https://garevna-rest-api.glitch.me/user/${login.value}`,{
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        passhash: hash,
-        avatar: img.src
-    })
-  }).then(response => {
-      if (response.status.ok) {
-        document.cookie = `login=${login.value}`
-        document.cookie = `hash=${hash}`
-      }
-    })
+  fetch (`https://garevna-rest-api.glitch.me/user/${login.value}`,{
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+      passhash: hash,
+      avatar: img.src
+  })
+}).then((response) => {
+    if (response.status.ok) {
+        document.cookie = login=${login.value}
+        document.cookie = hash=${hash}
+    }
+    else throw new Error ('Fetch failed')
+  })
 }
