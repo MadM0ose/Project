@@ -62,12 +62,10 @@ submit.onclick = function (event) {
         passhash: hash,
         avatar: img.src
     })
-  }).then(response => console.log(response.status))
-      .then(response => {
-        console.log (response.status.ok);
-        if (response.status.ok) {
-          document.cookie = `login=${login.value}`
-          document.cookie = `hash=${hash}`
-        }
+  }).then(response => {
+      if (response.status.ok) {
+        document.cookie = `login=${login.value}`
+        document.cookie = `hash=${hash}`
+      }
     })
 }
