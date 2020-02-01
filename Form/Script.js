@@ -67,6 +67,5 @@ submit.onclick = function (event) {
         document.cookie = `login = ${login.value}`
         document.cookie = `hash = ${hash}`
     }
-    else throw new Error ('Fetch failed')
-  })
+  }).then((response) => alert("Thanks for registation"))
 }
