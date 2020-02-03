@@ -63,9 +63,11 @@ submit.onclick = function (event) {
       avatar: img.src
   })
 }).then((response) => {
-    if (response.status.ok) {
-        document.cookie = `login = ${login.value}`
-        document.cookie = `hash = ${hash}`
+    if (response.ok) {
+        document.cookie = 'login=${login.value'
+        document.cookie = `hash=${hash}`
     }
-  }).then((response) => alert("Thanks for registation"))
+    else throw new Error ('Fetch failed')
+    }
+  )
 }
