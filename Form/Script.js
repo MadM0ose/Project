@@ -15,7 +15,7 @@ registrationPass2.disabled = true
 
 const avatar = document.getElementById('avatar')
 
-const img = document.getElementById('img')
+const regImg = document.getElementById('reg-img')
 
 const signIn = document.getElementById('signin')
 
@@ -31,9 +31,7 @@ const registrationformClose = document.getElementById('reg-close')
 
 const authorizationformClose = document.getElementById('auth-close')
 
-let regPass = ''
-
-let authPass = ''
+let pass = ''
 
 let user = ''
 
@@ -73,8 +71,8 @@ registrationPass2.oninput = function (event) {
 
 registrationPass2.onchange = function (event) {
   if (event.target.value === registrationPass1.value) {
-    regPass = Sha256.regPass (event.target.value)
-    signIn.disabled = !(hash && registrationLogin.value.match(/\S/))
+    pass = Sha256.hash (event.target.value)
+    signIn.disabled = !(pass && registrationLogin.value.match(/\S/))
   }  
 }
 
@@ -83,7 +81,7 @@ avatar.onchange = function (event) {
   const reader = new FileReader 
   reader.onload = function (event) {
     data = event.target.result
-    img.src = data
+    regImg.src = data
   }
   reader.readAsDataURL(event.target.files[0])
 }
@@ -96,13 +94,13 @@ signIn.onclick = function (event) {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-      passhash: regPass,
-      avatar: img.src
+      passhash: pass,
+      avatar: regImgsrc
   })
 }).then((response) => {
     if (response.ok) {
         document.cookie = `login=${registrationLogin.value}`
-        document.cookie = `hash=${hash}`
+        document.cookie = `hash=${pass}`
     }
     else throw new Error ('Fetch failed')
   })
@@ -118,15 +116,10 @@ signUp.onclick = function (event) {
         response.json() 
           .then( (response) => {
             user = response 
-            console.log(user)
+            pass = Sha256.hash (authorizationPass.value)
+            pass === user.passhash ? alert('hola') : alert ('Wrong password')
           })
-             
-              authorizationPass.onchange = function (event) {
-              authPass = Sha256.authPass (this.value)
-              authPass === response.passhash ? alert('hola') : alert('Wrong password')
-              console.log(authPass)
-              }
-            
+            .then ( (response) )     
       }
     })
 }
@@ -142,3 +135,8 @@ authorizationformClose.onclick = function(event) {
   authorizationForm.style.display = 'none'
 }
 
+window.onclick = function (event) {
+  event.target === document.body ? registrationForm.style.display = 'none' 
+    ? authorizationForm.style.display = 'none' : null : null
+
+}
