@@ -36,6 +36,7 @@
     justify-content: space-between;
     align-items: center;
     }
+
     .header-logo{
     margin: 5px 15px 10px 15px;
     font-size: 30px;
@@ -65,10 +66,21 @@
     border-bottom: 4px solid #6ee9fd;
     cursor: pointer;
     }
+
     .nav-link:hover{
     transition: all 0.5s;
     background: #fff;
     color: #2c536c;
+    }
+    
+    .user_photo {
+    display: none;
+    width: 35px;
+    height: 35px;
+    margin-left: 5px;
+    margin-top: 2px;
+    border: 2px solid #3adbfd;
+    border-radius: 50%;
     }
 
 /* FORM */

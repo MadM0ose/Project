@@ -17,6 +17,8 @@ const avatar = document.getElementById('avatar')
 
 const regImg = document.getElementById('reg-img')
 
+const userImg = document.getElementById('user-photo')
+
 const signIn = document.getElementById('signin')
 
 const signUp = document.getElementById('signup')
@@ -47,6 +49,7 @@ authorization.onclick = function (event) {
     display: block;
     transition: 0.5s;
   `
+  authorizationLogin = document.cookie.login
 }
 
 registrationPass1.oninput = function (event) {
@@ -95,7 +98,7 @@ signIn.onclick = function (event) {
   },
   body: JSON.stringify({
       passhash: pass,
-      avatar: regImgsrc
+      avatar: regImg.src
   })
 }).then((response) => {
     if (response.ok) {
@@ -104,9 +107,12 @@ signIn.onclick = function (event) {
     }
     else throw new Error ('Fetch failed')
   })
-    .then(
+    .then( (response) => {
+      userImg.style.display = 'inline-block'
+      userImg.src = regImg.src
+      registrationForm.style.display = 'none'
       alert("Welcome!")
-  )
+    })
 }
 
 signUp.onclick = function (event) {
@@ -117,9 +123,13 @@ signUp.onclick = function (event) {
           .then( (response) => {
             user = response 
             pass = Sha256.hash (authorizationPass.value)
-            pass === user.passhash ? alert('hola') : alert ('Wrong password')
+            pass === user.passhash 
+              ? userImg.style.display = 'inline-block' : null
+            userImg.src = user.avatar
           })
-            .then ( (response) )     
+            .then( ( response ) => {
+              authorizationForm.style.display = 'none'
+            } )     
       }
     })
 }
