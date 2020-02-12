@@ -1,9 +1,81 @@
-body{
+*,
+*:before,
+*:after{
+  box-sizing: border-box;
+}
+    body{
     background-image: url(img/background.jpg) ;
     background-size: 100%;
+    margin: 0;
    }
-  
-   .container{
+
+/* CONTAINER */
+
+    .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    }
+
+/* HEADER */
+    .header{
+    width: 100%;
+    padding-top: 10px;
+
+    background-color: #282828;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    }
+
+    .header-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .header-logo{
+    margin: 5px 15px 10px 15px;
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    }
+
+    .nav{
+    font-size: 14px;
+    text-transform: uppercase;
+    }
+
+    .nav-link{
+    display: inline-block;
+    vertical-align: top;
+    padding: 5px 15px;
+    margin: 5px 15px 10px 15px;
+    position: relative;
+
+    color: #fff;
+    text-decoration: none;
+
+    transition: color .1s linear;
+    
+    background-color: #2ca8c6;
+    border: none;
+    border-bottom: 4px solid #6ee9fd;
+    cursor: pointer;
+    }
+    .nav-link:hover{
+    transition: all 0.5s;
+    background: #fff;
+    color: #2c536c;
+    }
+
+/* FORM */
+
+
+    .reg_form, .auth_form{
+    display: none;
     width:450px;
     background-color: rgba(24, 33, 52, 0.7);
     margin: 170px auto 0 auto;
@@ -11,55 +83,82 @@ body{
     box-shadow: 0 -5px 0 #3adbfd;
     padding-bottom: 20px;
     padding-top: 20px;
-   }
-   .container img {
+    position: relative;
+    }
+
+    .reg_form img{
      width: 120px;
      height: 120px;
      margin: -75px 0 0 0;
      border: 5px solid #1a394f;
      border-radius: 50%;
      box-shadow: 0 -5px 0 #3adbfd;
-   }
-   input[type="text"], input[type="password"], input[type="file"]{
+    }
+
+    input[type="text"], input[type="password"], input[type="file"]{
     width: 300px;
     height:50px;
     font-size: 18px;
     margin: 10px 10px 10px 10px ;
     padding-left: 20px;
-   }
-   .hide{
+    
+    }
+
+    .hide{
        position: absolute;
        overflow: hidden;
        z-index: -1;
        width: 0.1px;
        height: 0.1px;
        opacity: 0;
-   }
-   .dws-input input:hover{
+    }
+
+    .dws-input .nav-link input:hover{
     box-shadow: 0 0 6px 3px rgba(58, 219, 253, 0.35);
-   }
-   .dws-submit{
+    }
+
+    .dws-submit{
     font-family: Arial, Helvetica;
     padding: 13px 30px;
-    margin: 5px 30px 20px 30px;
+    margin: 5px 20px 20px 20px;
     font-size: 15px;
     color: #fff;
     background-color: #2ca8c6;
     border: none;
     border-bottom: 4px solid #6ee9fd;
     cursor: pointer;
-   }
-   .dws-submit:hover{
+
+    }
+
+    .dws-submit:hover{
     transition: all 0.5s;
     background: #fff;
     color: #2c536c;
-   }
-   .upload-img {
+
+    }
+    .upload-img {
        position: relative;
        width: 100%;
        max-width: 50px;
        height: 100%;
        max-height: 70px;
        margin: 5px;
+    }
+
+    .close{
+       color: #fff;
+       font-size: 28px;
+       font-weight: bold;
+       position: absolute;
+       top: 10px;
+       right: 10px;
+       padding: 5px;
        
-   }
+    }
+
+    .close:hover, .close:focus{
+        color: #2ca8c6;
+        text-decoration: none;
+        cursor: pointer;
+    }
+   

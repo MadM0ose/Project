@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+ <link rel="stylesheet" href="Style.css" type="text/css">
+</head>
+<body>
+  
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="header-logo">Musical instruments</div>
+        <nav class="nav">
+            <input id = "register" class = "nav-link" type = "button" value = "Sign in">
+            <input id = "authorization" class = "nav-link" type = "button" value = "Sign up">
+        </nav>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="reg_form" id = "reg-form">
+    <span class = "close" id = "reg-close">&times;</span>
+    <div class="container">
+      <img id = "img" src = "img/default-img.jpg">
+      <div class="dws-input">
+      <input type = "text" id = "reg-login" placeholder = "login">
+      </div>
+      <div class="dws-input">
+        <input type = "password" id = "reg-pass1" placeholder = "password">
+      </div>
+      <div class="dws-input">
+        <input type = "password" id = "reg-pass2" placeholder="repeate your password">
+      </div>
+      <div>
+        <input type = "file" name = "file" id = "avatar" class = "hide">
+        <label class = "dws-submit" for="avatar">
+          <span>Upload avatar</span>
+        </label> 
+        <input id = "signin" class = "dws-submit" type = "submit" value = "Sign in">
+      </div>
+    </div>
+  </div>
+
+  <div class = auth_form id = "auth-form">
+    <span class = "close" id = "auth-close">&times;</span>
+    <div class = "container">
+      <div class = "dws-input">
+        <input type = "text" id = "auth-login" placeholder = "login">
+      </div>
+      <div class="dws-input">
+        <input type = "password" id = "auth-pass" placeholder = "password">
+      </div>
+      <div>
+        <input id = "signup" class = "dws-submit" type = "submit" value = "Sign up">
+      </div>
+    </div>
+  </div>
+<script src = "https://cdn.rawgit.com/chrisveness/crypto/4e93a4d/sha256.js"></script>
+<script src = "Script.js"></script>
+</body>
+</html>

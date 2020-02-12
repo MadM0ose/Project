@@ -1,20 +1,57 @@
-const login = document.getElementById('login')
+const register = document.getElementById('register')
 
-const pass1 = document.getElementById('pass1')
+const authorization = document.getElementById('authorization')
 
-const pass2 = document.getElementById('pass2')
-pass2.disabled = true
+const registrationLogin = document.getElementById('reg-login')
+
+const authorizationLogin = document.getElementById('auth-login')
+
+const authorizationPass = document.getElementById('auth-pass')
+
+const registrationPass1 = document.getElementById('reg-pass1')
+
+const registrationPass2 = document.getElementById('reg-pass2')
+registrationPass2.disabled = true
 
 const avatar = document.getElementById('avatar')
 
 const img = document.getElementById('img')
 
-const submit = document.getElementById('submit')
+const signIn = document.getElementById('signin')
 
+const signUp = document.getElementById('signup')
 
-let hash = '', test
+const registrationForm = document.getElementById('reg-form')
+registrationForm.disabled = true
 
-pass1.oninput = function (event) {
+const authorizationForm = document.getElementById('auth-form')
+authorizationForm.disabled = true
+
+const registrationformClose = document.getElementById('reg-close')
+
+const authorizationformClose = document.getElementById('auth-close')
+
+let regPass = ''
+
+let authPass = ''
+
+let user = ''
+
+register.onclick = function (event) {
+  registrationForm.style = `
+    display: block;
+    transition: 0.5s;
+  `
+}
+
+authorization.onclick = function (event) {
+  authorizationForm.style = `
+    display: block;
+    transition: 0.5s;
+  `
+}
+
+registrationPass1.oninput = function (event) {
   event.target.test = Boolean(event.target.value.match(/\d/)
    && event.target.value.match(/\w/)
    && event.target.value.length > 7)
@@ -22,22 +59,22 @@ pass1.oninput = function (event) {
   event.target.style.color = event.target.test ? '#2DFF08' : 'red'
 }
 
-pass1.onchange = function (event) {
+registrationPass1.onchange = function (event) {
   if (event.target.test) {
-    pass2.disabled = false
+    registrationPass2.disabled = false
   }
 }
 
-pass2.oninput = function (event) {
+registrationPass2.oninput = function (event) {
   event.target.style.color = 
-    event.target.value === pass1.value 
+    event.target.value === registrationPass1.value 
       ? '#2DFF08' : 'red' 
 }
 
-pass2.onchange = function (event) {
-  if (event.target.value === pass1.value) {
-    hash = Sha256.hash (event.target.value)
-    submit.disabled = !(hash && login.value.match(/\S/))
+registrationPass2.onchange = function (event) {
+  if (event.target.value === registrationPass1.value) {
+    regPass = Sha256.regPass (event.target.value)
+    signIn.disabled = !(hash && registrationLogin.value.match(/\S/))
   }  
 }
 
@@ -52,22 +89,56 @@ avatar.onchange = function (event) {
 }
 
 
-submit.onclick = function (event) {
-  fetch (`https://garevna-rest-api.glitch.me/user/${login.value}`,{
+signIn.onclick = function (event) {
+  fetch (`https://garevna-rest-api.glitch.me/user/${registrationLogin.value}`,{
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-      passhash: hash,
+      passhash: regPass,
       avatar: img.src
   })
 }).then((response) => {
     if (response.ok) {
-        document.cookie = `login=${login.value}`
+        document.cookie = `login=${registrationLogin.value}`
         document.cookie = `hash=${hash}`
     }
     else throw new Error ('Fetch failed')
-    }
+  })
+    .then(
+      alert("Welcome!")
   )
 }
+
+signUp.onclick = function (event) {
+  fetch ( `https://garevna-rest-api.glitch.me/user/${authorizationLogin.value}`)
+    .then( ( response ) => {
+      if (response.ok) {
+        response.json() 
+          .then( (response) => {
+            user = response 
+            console.log(user)
+          })
+             
+              authorizationPass.onchange = function (event) {
+              authPass = Sha256.authPass (this.value)
+              authPass === response.passhash ? alert('hola') : alert('Wrong password')
+              console.log(authPass)
+              }
+            
+      }
+    })
+}
+
+
+
+registrationformClose.onclick = function(event) {
+  registrationForm.style.display = 'none'
+}
+
+
+authorizationformClose.onclick = function(event) {
+  authorizationForm.style.display = 'none'
+}
+
