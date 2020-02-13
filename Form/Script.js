@@ -49,7 +49,9 @@ authorization.onclick = function (event) {
     display: block;
     transition: 0.5s;
   `
-  authorizationLogin = document.cookie.login
+}
+authorizationForm.onload = function () {
+  fetch(`https://garevna-rest-api.glitch.me/user/${document.cookie = login}`)
 }
 
 registrationPass1.oninput = function (event) {
