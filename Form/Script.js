@@ -51,8 +51,7 @@ authorization.onclick = function (event) {
   `
 }
 authorizationForm.onload = function () {
-  function getCookies () {
-    var res = document.cookie
+  var res = document.cookie
         .split ( "; " )
         .map (
             x =>  {
@@ -63,7 +62,6 @@ authorizationForm.onload = function () {
             }
         )
     return Object.assign ( {}, ...res )
-}
 }
 
 registrationPass1.oninput = function (event) {
