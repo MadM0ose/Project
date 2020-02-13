@@ -50,19 +50,6 @@ authorization.onclick = function (event) {
     transition: 0.5s;
   `
 }
-authorizationForm.onload = function () {
-  var res = document.cookie
-        .split ( "; " )
-        .map (
-            x =>  {
-                var tmp = x.split ( "=" )
-                var elem = {}
-                elem [ tmp [0] ] = tmp [1]
-                return elem
-            }
-        )
-    return Object.assign ( {}, ...res )
-}
 
 registrationPass1.oninput = function (event) {
   event.target.test = Boolean(event.target.value.match(/\d/)
