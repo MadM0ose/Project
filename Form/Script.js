@@ -1,37 +1,17 @@
-const register = document.getElementById('register')
+const [register, authorization, registrationLogin,
+  authorizationLogin, authorizationPass, registrationPass1,
+  registrationPass2, avatar, regImg, userImg, signIn, signUp,
+  registrationForm, authorizationForm, registrationFormClose,
+  authorizationFormClose
+] = [ 'register', 'authorization', 'reg-login', 'auth-login',
+  'auth-pass', 'reg-pass1', 'reg-pass2', 'avatar', 'reg-img',
+  'user-photo', 'signin', 'signup', 'reg-form', 'auth-form',
+  'reg-close', 'auth-close'
+].map(item => document.getElementById(item))
 
-const authorization = document.getElementById('authorization')
-
-const registrationLogin = document.getElementById('reg-login')
-
-const authorizationLogin = document.getElementById('auth-login')
-
-const authorizationPass = document.getElementById('auth-pass')
-
-const registrationPass1 = document.getElementById('reg-pass1')
-
-const registrationPass2 = document.getElementById('reg-pass2')
 registrationPass2.disabled = true
-
-const avatar = document.getElementById('avatar')
-
-const regImg = document.getElementById('reg-img')
-
-const userImg = document.getElementById('user-photo')
-
-const signIn = document.getElementById('signin')
-
-const signUp = document.getElementById('signup')
-
-const registrationForm = document.getElementById('reg-form')
 registrationForm.disabled = true
-
-const authorizationForm = document.getElementById('auth-form')
 authorizationForm.disabled = true
-
-const registrationformClose = document.getElementById('reg-close')
-
-const authorizationformClose = document.getElementById('auth-close')
 
 let pass = ''
 
@@ -89,7 +69,7 @@ avatar.onchange = function (event) {
 }
 
 
-signIn.onclick = function (event) {
+signUp.onclick = function (event) {
   fetch (`https://garevna-rest-api.glitch.me/user/${registrationLogin.value}`,{
   method: 'POST',
   headers: {
@@ -110,11 +90,12 @@ signIn.onclick = function (event) {
       userImg.style.display = 'inline-block'
       userImg.src = regImg.src
       registrationForm.style.display = 'none'
-      alert("Welcome!")
+      register.style.display = 'none'
+      authorization.style.display = 'none'
     })
 }
 
-signUp.onclick = function (event) {
+signIn.onclick = function (event) {
   fetch ( `https://garevna-rest-api.glitch.me/user/${authorizationLogin.value}`)
     .then( ( response ) => {
       if (response.ok) {
@@ -128,6 +109,8 @@ signUp.onclick = function (event) {
           })
             .then( ( response ) => {
               authorizationForm.style.display = 'none'
+              register.style.display = 'none'
+              authorization.style.display = 'none'
             } )     
       }
     })
@@ -135,12 +118,12 @@ signUp.onclick = function (event) {
 
 
 
-registrationformClose.onclick = function(event) {
+registrationFormClose.onclick = function(event) {
   registrationForm.style.display = 'none'
 }
 
 
-authorizationformClose.onclick = function(event) {
+authorizationFormClose.onclick = function(event) {
   authorizationForm.style.display = 'none'
 }
 
